@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('layout.t_home');
 });
 
+
+//LOGIN USER
+Route::view('/logout','layout.t_login');
+
 Route::view('/gudang', 'layout.t_gudang');
 Route::view('/supplier', 'layout.t_supplier');
 Route::view('/barang', 'layout.t_barang');
@@ -65,4 +69,5 @@ Route::get('/transaksi/hapus/{id}', 'TransaksiController@destroy');
 Route::get('/transaksi/edit/{id}', 'TransaksiController@edit');
 Route::get('prosesprinttransaksi', 'TransaksiController@cetaklaporan');
 // Route::get('dropdownlist','TransaksiController@getBarang');
+
 

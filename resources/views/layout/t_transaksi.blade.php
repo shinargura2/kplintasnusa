@@ -48,8 +48,17 @@
 		</div>
 
 		<div class="col-2">
-		Keterangan :
-		{!! Form::text('status','',['placeholder'=> 'Keterangan','class' => 'form-control']) !!}
+		Tanggal Transaksi :
+		<input type="date" name="tanggalttransaksi">
+
+		</div>
+
+		<div class="col-2">
+		Pilih Status :
+		<select name="status" id="status" class="form-control">
+			<option value="Barang Masuk">Barang Masuk</option>
+			<option value="Barang Keluar">Barang Keluar</option>
+		</select>
 		</div>
 		
 		<p></p>
@@ -72,7 +81,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table align="center" id="example2" class="table table-bordered table-hover">
+                 <table align="center" id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                   	<th>No.</th>
@@ -81,6 +90,7 @@
                     <th>Nama Barang</th>
                     <th>Jumlah Transaksi</th>
                     <th>Keterangan</th>
+                    <th>Tanggal</th>
                     <th>Aksi</th>
                   </tr>
                   </thead>
@@ -94,6 +104,7 @@
                     <td>{{$key->nama_barang}}</td>
                     <td>{{$key->jumlah_transaksi}}</td>
                     <td>{{$key->status}}</td>
+                    <td>{{$key->tanggaltransaksi}}</td>
                     <td><a href="/transaksi/edit/{{$key->id_transaksi}}" class="btn btn-success">Edit</a>||<a href="/transaksi/hapus/{{$key->id_transaksi}}" class="btn btn-danger">Hapus</a></td>
                   </tr>
                   @endforeach

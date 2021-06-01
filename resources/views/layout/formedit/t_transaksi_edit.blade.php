@@ -50,9 +50,19 @@
 		</div>
 
 		<div class="col-2">
-		Status :
-		{!! Form::text('status',$data->status,['class' => 'form-control']) !!}
+		Tanggal Transaksi :
+		<input type="date" name="tanggalttransaksi">
+
+
 		</div>
+		<div class="col-2">
+		Pilih Status :
+		<select name="status" id="status" class="form-control">
+			<option value="Barang Masuk">Barang Masuk</option>
+			<option value="Barang Keluar">Barang Keluar</option>
+		</select>
+		</div>
+		
 		
 		<p></p>
 		<div class="col-2">

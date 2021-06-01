@@ -2,6 +2,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               <li class="nav-header">Menu Utama</li>
             <li class="nav-item {{ (request()->segment(1) == '/') ? 'active' : '' }}">
             <a href="/" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -56,8 +57,22 @@
             </a>
           </li>
 
-
+      <li class="nav-header">Fitur Laporan</li>
+          <li class="nav-item"> 
+            <a href="/laporan" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>Laporan</p>
+            </a>
+          </li>
          
+      <li class="nav-header">Akun</li>
+          <li class="nav-item"> 
+            <a href="/logout" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+
+              <p>Logout</p>
+            </a>
+          </li>
           
     
       </nav>

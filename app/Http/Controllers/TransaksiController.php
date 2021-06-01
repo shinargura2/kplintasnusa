@@ -7,6 +7,7 @@ use DB;
 use View;
 use Redirect;
 use PDF;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class TransaksiController extends Controller
 {
@@ -53,6 +54,7 @@ class TransaksiController extends Controller
             'nama_barang' => request()->get('namabarang'),
             'jumlah_transaksi' => request()->get('jumlahtransaksi'),
             'status' => request()->get('status'),
+            'tanggaltransaksi' => request()->get('tanggalttransaksi'),
         );
         DB::table('transaksis')->insert($data);
         return redirect('/transaksi');;
@@ -98,6 +100,7 @@ class TransaksiController extends Controller
             'nama_barang' => request()->get('namabarang'),
             'jumlah_transaksi' => request()->get('jumlahtransaksi'),
             'status' => request()->get('status'),
+            'tanggaltransaksi' => request()->get('tanggalttransaksi'),
         );
         DB::table('transaksis')->where('id_transaksi','=',request()->get('idtransaksi'))->update($data);
         return redirect('/transaksi');
