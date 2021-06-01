@@ -13,25 +13,43 @@
 		</div>
 
 		<div class="col-2">
-			
+		
+		{{-- {!! Form::Label('idbarang', 'idbrang :') !!}
+		{!! Form::select('id_barang', $idbarangs) !!} --}}
 		ID Barang :
-		{!! Form::text('idbarang','',['placeholder'=> 'ID Barang','class' => 'form-control']) !!}
+		<select name="idbarang" class="form-control">
+			<option value="">======PILIH========</option>
+			@foreach ($barang as $idbarang)
+			<option value="{{$idbarang -> id_barang}}">{{$idbarang -> id_barang}}</option>
+			@endforeach
+		</select>
+
+		{{-- ID Barang :
+		{!! Form::text('idbarang','',['placeholder'=> 'ID Barang','class' => 'form-control']) !!} --}}
 			</div>
 
 		<div class="col-4">
 			
 		Nama Barang :
-		{!! Form::text('namabarang','',['placeholder'=> 'Nama Barang','class' => 'form-control']) !!}
+		<select name="namabarang" class="form-control">
+			<option value="">======PILIH========</option>
+				@foreach ($barang as $namabarang)
+				<option value="{{$namabarang -> nama_barang}}">{{$namabarang -> nama_barang}}</option>
+				@endforeach
+		</select>
+		{{-- {!! Form::text('namabarang','',['placeholder'=> 'Nama Barang','class' => 'form-control']) !!} --}}
 			</div>
+		
 		<div class="col-2">
+
 
 		Jumlah Transaksi :
 		{!! Form::number('jumlahtransaksi','',['placeholder'=> 'Masukkan Angka','class' => 'form-control']) !!}
 		</div>
 
 		<div class="col-2">
-		Status :
-		{!! Form::text('status','',['placeholder'=> 'status','class' => 'form-control']) !!}
+		Keterangan :
+		{!! Form::text('status','',['placeholder'=> 'Keterangan','class' => 'form-control']) !!}
 		</div>
 		
 		<p></p>
@@ -50,6 +68,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title" align="center">Tabel Transaksi</h3>
+                <a href="/prosesprinttransaksi" class="btn btn-warning float-right btn-sm"><i class="fas fa-print"></i>Cetak</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -61,13 +80,13 @@
                     <th>ID Barang</th>
                     <th>Nama Barang</th>
                     <th>Jumlah Transaksi</th>
-                    <th>Status</th>
+                    <th>Keterangan</th>
                     <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
                   	<?php $nomor=1; ?>
-                  	@foreach($transaksis as $key)
+                  	@foreach($data as $key)
                   <tr>
                   	<td>{{$nomor++}}</td>
                     <td>{{$key->id_transaksi}}</td>

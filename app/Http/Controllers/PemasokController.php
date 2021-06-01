@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use View;
 use Redirect;
+use PDF;
 
 class PemasokController extends Controller
 {
@@ -110,4 +111,18 @@ class PemasokController extends Controller
         DB::table('pemasoks')->where('id_pemasok',$id)->delete();
         return redirect('/supplier');
     }
+
+    //TAMBAHAN FUNCTIOn
+    public function cetaklaporan()
+    {
+        $data = DB::table('pemasoks')->get();
+        $pdf = PDF::loadview("layout/laporan/pemasok_pdf", [
+            "data" => $data]);
+
+        // $pdf = PDF::loadview('layout.laporan.pemasok_pdf',compact('data'));
+
+        // $pdf = PDF::loadview('layout.laporan.pemasok_pdf',['data'=>$data]);
+        return $pdf->download('laporansupplier.pdf');
+    }
+
 }

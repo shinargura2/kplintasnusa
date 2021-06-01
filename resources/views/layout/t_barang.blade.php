@@ -25,28 +25,48 @@
 			</div>
 		<div class="col-4">
 			
-		Nama Pemasok :
-		{!! Form::text('namapemasok','',['placeholder'=> 'Nama Pemasok','class' => 'form-control']) !!}
+		{{-- Nama Pemasok :
+		{!! Form::text('namapemasok','',['placeholder'=> 'Nama Pemasok','class' => 'form-control']) !!} --}}
 		{{-- <select name="namapemasok" class="form-control">
 			<option value="">Pilih Pemasok</option>
 			@foreach($pemasoks as $key2)
 			<option value="{{$key2->nama_pemasok}}">{{$key2->nama_pemasok}}</option>
 			@endforeach
 		</select> --}}
+		Pemasok :
+		<select name="namapemasok" class="form-control">
+			<option value="">======PILIH DULU========</option>
+			@foreach ($pemasok as $namapemasok)
+			<option value="{{$namapemasok -> nama_pemasok}}">{{$namapemasok -> nama_pemasok}}</option>
+			@endforeach
+		</select>
 		
 			</div>
 		
 
-	
-		<div class="col-2">
+		<div class="col-3">
+		{{-- ID Gudang :
+		{!! Form::text('idgudang','',['placeholder'=> 'ID Gudang','class' => 'form-control']) !!} --}}
 		ID Gudang :
-		{!! Form::text('idgudang','',['placeholder'=> 'ID Gudang','class' => 'form-control']) !!}
+		<select name="idgudang" class="form-control">
+			<option value="">======PILIH DULU========</option>
+			@foreach ($gudang as $idgudang)
+			<option value="{{$idgudang -> id_gudang}}">{{$idgudang -> id_gudang}}</option>
+			@endforeach
+		</select>
 		</div>
 
-		<div class="col-3">
-		Satuan :
+		<div class="col-2">
+		{{-- Satuan :
 		
-		{!! Form::text('satuanbarang','',['placeholder'=> 'Masukkan Satuan','class' => 'form-control']) !!}	
+		{!! Form::text('satuanbarang','',['placeholder'=> 'Masukkan Satuan','class' => 'form-control']) !!}	 --}}
+		Satuan :
+		<select name="satuanbarang" class="form-control">
+			<option value="">====PILIH DULU====</option>
+			@foreach ($satuan as $namasatuan)
+			<option value="{{$namasatuan -> satuan}}">{{$namasatuan -> satuan}}</option>
+			@endforeach
+		</select>
 		</div>
 		
 		<p></p>
@@ -66,6 +86,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title" align="center">Tabel Barang</h3>
+                <a href="/prosesprintbarang" class="btn btn-warning float-right btn-sm"><i class="fas fa-print"></i>Cetak</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -84,7 +105,7 @@
                   </thead>
                   <tbody>
                   	<?php $nomor=1; ?>
-                  	@foreach($barangs as $key)
+                  	@foreach($data as $key)
                   <tr>
                   	<td>{{$nomor++}}</td>
                     <td>{{$key->id_barang}}</td>

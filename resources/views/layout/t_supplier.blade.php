@@ -44,10 +44,12 @@
 		<div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title" align="center">Tabel Gudang</h3>
+                <h3 class="card-title" align="center">Tabel Supplier</h3>
+                <a href="/prosesprintsup" class="btn btn-warning float-right btn-sm"><i class="fas fa-print"></i>Cetak</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+
                 <table align="center" id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>

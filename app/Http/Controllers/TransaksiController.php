@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use View;
 use Redirect;
+use PDF;
 
 class TransaksiController extends Controller
 {
@@ -17,7 +18,8 @@ class TransaksiController extends Controller
     public function index()
     {
         $data = DB::table('transaksis')->get();
-        return View::make('layout.t_transaksi')->with('transaksis', $data);
+        $barang = DB::table('barangs')->get();
+        return View::make('layout.t_transaksi',["data"=> $data,"barang"=>$barang]);
     }
 
     /**
@@ -27,15 +29,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        // $data = array(
-        //     'id_transaksi' => request()->get('idtransaksi'),
-        //     'id_barang' => request()->get('idbarang'),
-        //     'nama_barang' => request()->get('namabarang'),
-        //     'jumlah_transaksi' => request()->get('jumlahtransaksi'),
-        //     'status' => request()->get('status'),
-        // );
-        // DB::table('transaksis')->insert($data);
-        // return redirect('/transaksi');;
+        
     }
 
     /**
@@ -46,12 +40,22 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-         $data = array(
-            'id_satuan' => request()->get('idsatuan'),
-            'satuan' => request()->get('namasatuan'),
+        //  $data = array(
+        //     'id_satuan' => request()->get('idsatuan'),
+        //     'satuan' => request()->get('namasatuan'),
+        // );
+        // DB::table('satuans')->insert($data);
+        // return redirect('/satuan');;
+
+        $data = array(
+            'id_transaksi' => request()->get('idtransaksi'),
+            'id_barang' => request()->get('idbarang'),
+            'nama_barang' => request()->get('namabarang'),
+            'jumlah_transaksi' => request()->get('jumlahtransaksi'),
+            'status' => request()->get('status'),
         );
-        DB::table('satuans')->insert($data);
-        return redirect('/satuan');;
+        DB::table('transaksis')->insert($data);
+        return redirect('/transaksi');;
     }
 
     /**
@@ -74,7 +78,9 @@ class TransaksiController extends Controller
     public function edit($id)
     {
         $data = DB::table('transaksis')->where('id_transaksi','=',$id)->first();
-        return view('layout.formedit.t_transaksi_edit')->with('transaksis', $data);
+        $barang = DB::table('barangs')->get();
+        // dd($data);
+        return view('layout.formedit.t_transaksi_edit', ["data"=> $data,"barang"=>$barang]);
     }
 
     /**
@@ -108,4 +114,31 @@ class TransaksiController extends Controller
         DB::table('transaksis')->where('id_transaksi',$id)->delete();
         return redirect('/transaksi');
     }
+
+    public function cetaklaporan()
+    {
+        $data = DB::table('transaksis')->get();
+        $pdf = PDF::loadview("layout/laporan/transaksi_pdf", [
+            "data" => $data]);
+
+        // $pdf = PDF::loadview('layout.laporan.pemasok_pdf',compact('data'));
+
+        // $pdf = PDF::loadview('layout.laporan.pemasok_pdf',['data'=>$data]);
+        return $pdf->download('laporantransaksi.pdf');
+    }
+
+    // public function dropDownShow(Request $request){
+
+    //     $pickid = barangs::pluck('id_barang');
+    //     // $selectedID = 2;
+    //     return view('layout.t_transaksi', compact('id', 'items'));
+    // }
+    // public function getBarang(){
+    //     $idbarangs =  DB::table('barangs')->pluck("id_barang","nama_barang");
+    //     return view('t_transaksi', compact('barangs'))
+
+    // }
+
+
+
 }

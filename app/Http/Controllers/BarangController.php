@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use View;
 use Redirect;
+use PDF;
 
 class BarangController extends Controller
 {
@@ -17,7 +18,10 @@ class BarangController extends Controller
     public function index()
     {
         $data = DB::table('barangs')->get();
-        return View::make('layout.t_barang')->with('barangs', $data);
+        $pemasok = DB::table('pemasoks')->get();
+        $gudang = DB::table('gudangs')->get();
+        $satuan = DB::table('satuans')->get();
+        return View::make('layout.t_barang', ["data" => $data,"pemasok"=>$pemasok, "gudang" => $gudang, "satuan" => $satuan]);
     }
 
     /**
@@ -79,7 +83,10 @@ class BarangController extends Controller
     public function edit($id)
     {
          $data = DB::table('barangs')->where('id_barang','=',$id)->first();
-        return view('layout.formedit.t_barang_edit')->with('barangs', $data);
+         $pemasok = DB::table('pemasoks')->get();
+         $gudang = DB::table('gudangs')->get();
+         $satuan = DB::table('satuans')->get();
+        return view('layout.formedit.t_barang_edit', ["data"=> $data,"pemasok"=>$pemasok, "gudang"=> $gudang , "satuan"=> $satuan]);
     }
 
     /**
@@ -113,5 +120,16 @@ class BarangController extends Controller
     {
         DB::table('barangs')->where('id_barang',$id)->delete();
         return redirect('/barang');
+    }
+
+    public function cetaklaporan()
+    {
+        $data = DB::table('barangs')->get();
+        $pdf = PDF::loadview("layout/laporan/barang_pdf", ["data" => $data]);
+
+        // $pdf = PDF::loadview('layout.laporan.pemasok_pdf',compact('data'));
+
+        // $pdf = PDF::loadview('layout.laporan.pemasok_pdf',['data'=>$data]);
+        return $pdf->download('laporanbarang.pdf');
     }
 }

@@ -45,6 +45,7 @@ Route::post('prosestambahpemasok', 'PemasokController@store');
 Route::post('proseseditpemasok', 'PemasokController@update');
 Route::get('/supplier/hapus/{id}', 'PemasokController@destroy');
 Route::get('/supplier/edit/{id}', 'PemasokController@edit');
+Route::get('prosesprintsup', 'PemasokController@cetaklaporan');
 
 // //INI BUAT BARANG
 Route::resource('/barang', 'BarangController');
@@ -52,6 +53,7 @@ Route::post('prosestambahbarang', 'BarangController@store');
 Route::post('proseseditbarang', 'BarangController@update');
 Route::get('/barang/hapus/{id}', 'BarangController@destroy');
 Route::get('/barang/edit/{id}', 'BarangController@edit');
+Route::get('prosesprintbarang', 'BarangController@cetaklaporan');
 // Route::get('/barang', 'BarangController@create');
 // Route::get('dropdownbarang', 'BarangController@dropdownbarang');
 
@@ -61,4 +63,6 @@ Route::post('prosestambahtransaksi', 'TransaksiController@store');
 Route::post('prosesedittransaksi', 'TransaksiController@update');
 Route::get('/transaksi/hapus/{id}', 'TransaksiController@destroy');
 Route::get('/transaksi/edit/{id}', 'TransaksiController@edit');
+Route::get('prosesprinttransaksi', 'TransaksiController@cetaklaporan');
+// Route::get('dropdownlist','TransaksiController@getBarang');
 
