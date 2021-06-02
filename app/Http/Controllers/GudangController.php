@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 use DB;
 use View;
 use Redirect;
+use App\idgudang;
 class GudangController extends Controller
 {
     /**
@@ -16,8 +18,10 @@ class GudangController extends Controller
     public function index()
     {
         $gudangs = DB::table('gudangs')->get();
-        $data['gudangs'] = $gudangs;
-        return view('layout.t_gudang', $data);
+        // $gudangs = DB::table('gudangs')->get();
+        // $data['gudangs'] = $gudangs;
+        $kode = idgudang::kodegudang();
+        return view('layout.t_gudang', compact('kode','gudangs'));
         // return View::make('layout.t_gudang')->with('gudangs', $data);
 
     }
@@ -29,12 +33,24 @@ class GudangController extends Controller
      */
     public function create()
     {
-        // $data = array(
-        //     'id_gudang' => request()->get('idgudang'),
-        //     'nama_gudang' => request()->get('namagudang'),
-        // );
-        // DB::table('gudangs')->insert($data);
-        // return redirect('/gudang');;
+        
+        // $kode = DB::table('gudangs')->max('id_gudang');
+        // $addNol = '';
+        // $kode = str_replace("TRS","",$kode);
+        // $kode = (int) $kode +1;
+        // $incrementKode = $kode;
+
+        // if(strlen($kode)==1){
+        //     $addNol = "000";
+        // }elseif (strlen($kode) == 2) {
+        //     $addNol = "00";
+        // } elseif (strlen($kode == 3)) {
+        //     $addNol = "0";
+        // }
+        // $kodeBaru = "TRS".$addNol.$incrementKode;
+        // $data ['kodeBaru'] = $kodebaru;
+        // return view('layout.t_gudang',$data);
+
     }
 
     /**

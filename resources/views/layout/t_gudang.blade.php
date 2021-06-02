@@ -7,8 +7,15 @@
 		{!! Form::open(['url' => '/prosestambahgudang']) !!}
 		<div class="col-2">
 			
-		ID Gudang :
-		{!! Form::text('idgudang','',['placeholder'=> 'ID Gudang','class' => 'form-control']) !!}
+				
+			
+			
+			ID Gudang :			
+			<input value="{{$kode}}"  class="form-control" type="text" name="idgudang" readonly>
+
+
+		{{-- ID Gudang :
+		{!! Form::text('idgudang','',['placeholder'=> 'ID Gudang','class' => 'form-control']) !!} --}}
 		
 		</div>
 
